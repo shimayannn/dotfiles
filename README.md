@@ -1,9 +1,9 @@
 # dotfiles
 
 ## Environment
-### zsh 5.1.1 (x86_64-ubuntu-linux-gnu)
-### percol 0.2.1 (requires python2.7 and pip)
-### incr 0.2
+* zsh 5.1.1 (x86_64-ubuntu-linux-gnu)
+* percol 0.2.1 (requires python2.7 and pip)
+* incr 0.2
 
 ## Setup
 - Link .zshrc
