@@ -51,6 +51,7 @@ function backward-kill-word-or-region() {
 }
 zle -N backward-kill-word-or-region
 bindkey "^w" backward-kill-word-or-region
+bindkey "^[h" backward-kill-word-or-region
 
 # language
 export LANG=en_US.UTF-8
@@ -72,11 +73,14 @@ autoload -Uz compinit
 compinit -uC
 zstyle ':completion:*:default' menu select=2
 
+export WORDCHARS="*?_-.[]~&;=!#$%^(){}<>"
+
 source ~/.zsh.d/incr-0.2.zsh
 autoload bashcompinit
 bashcompinit
 
 # percol
+source $HOME/.python3_venv/bin/activate
 function exists { which $1 &> /dev/null }
 
 if exists percol; then
@@ -89,8 +93,10 @@ if exists percol; then
     }
 
     zle -N percol_select_history
-    bindkey '^R' percol_select_history
+    bindkey '^r' percol_select_history
 fi
+
+deactivate
 
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 setopt list_packed
@@ -111,6 +117,7 @@ bindkey "^[[Z" reverse-menu-complete
 
 setopt correct
 setopt no_beep
+#setopt ignoreeof
 
 # prompt
 autoload -Uz colors
@@ -123,7 +130,8 @@ $ '
 # Ctrl-h = backspace
 stty sane
 if [ "$(stty | grep erase)" = "" ] ; then
-    stty erase 
+    stty erase '^?'
+    #stty erase 
 fi
 
 export LESS='-R'
@@ -136,8 +144,9 @@ alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 alias ll='ls -l'
-alias la='ls -aF'
+alias la='ls -lrthaF'
 alias sc='screen -D -RR'
+export SCREENDIR=$HOME/.screen
 
 alias ls='ls --color=auto -NF --show-control-chars'
 alias emacs='/usr/bin/emacs -nw'
@@ -146,6 +155,16 @@ alias Emacs='/usr/bin/emacs'
 read_only_emacs() {
 [ -f "$1" ] || (echo "No such file or directory: $1" >&2; exit 1)
   emacs "$1" --eval '(setq buffer-read-only t)'
-}     
+}
 alias remacs='read_only_emacs'
+alias vless="/usr/share/vim/vim91/macros/less.sh"
+alias python='python3'
+alias pip='pip3'
 
+setopt AUTO_PUSHD # pushd automatically
+setopt PUSHD_IGNORE_DUPS # remove directory duplication
+alias cdd='cd ..' # move parent directory
+alias cds='dirs -v; echo -n "select number: "; read newdir; cd +"$newdir"' # select previous cd
+
+# activate
+source $HOME/.python3_venv/bin/activate

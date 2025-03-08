@@ -1,0 +1,39 @@
+startup_message off
+
+shell -/usr/bin/zsh
+
+## current command name as window name
+shelltitle "$ |zsh"
+
+escape ^z^z
+
+defbce             on
+term               xterm-256color
+termcap * 'G0:S0=\E(%.:E0=\E(B:TY=iso2022'
+termcapinfo xterm* ti@:te@
+autodetach on
+defflow off
+crlf off
+vbell off
+vbell_msg "Bell"
+altscreen on
+
+#hardstatus alwayslastline "%{= cd} %-w%{= wk} %n %t* %{-}%+w"
+hardstatus alwayslastline "%{.bW}%-w%{.rW}%n %t%{-}%+w %=%{..G} %H %{..Y} %Y %m/%d %C:%s%a"
+hardstatus off
+
+defscrollback 10000
+termcapinfo xterm* ti@:te@
+
+defutf8 on
+defencoding utf8
+encoding utf8 utf8
+defencoding utf-8
+
+bind o focus
+bind k kill
+bind s split
+
+defscrollback 1000000
+screen 0
+screen 1

@@ -1,7 +1,8 @@
 # dotfiles
 
 ## Environment
-* zsh 5.1.1 (x86_64-ubuntu-linux-gnu)
+* WSL Ubuntu-24.04 on Windows11
+* zsh 5.9 (x86_64-ubuntu-linux-gnu)
 * percol 0.2.1 (requires python2.7 and pip)
 * incr 0.2
 
@@ -23,6 +24,16 @@
     ```mv zsh-completions completion```
 
     ```wget http://mimosa-pudica.net/src/incr-0.2.zsh```
+
+- Prepare Python venv
+
+    ```sudo apt install python3-venv```
+
+    ```python3 -m venv .python3_venv```
+
+- Install en locale
+
+l    ```sudo apt install language-pack-en```
 
 - Install percol
 
